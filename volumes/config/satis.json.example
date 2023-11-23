@@ -1,0 +1,16 @@
+{
+    "name": "vendorName/server",
+    "homepage": "http://www.mydomain.com",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "ssh://git@gitlab.mydomain.com:22/group/repo-name.git"
+        },
+        {
+            "type": "svn",
+            "url": "svn://my.domain.com/packages/package1"
+        }
+        
+    ],
+    "require-all": true
+}

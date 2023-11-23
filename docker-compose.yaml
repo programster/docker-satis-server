@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: src
+      dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME}
+    image: ${IMAGE_NAME}
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./volumes/config:/config:ro
+      - ./volumes/ssl:/etc/apache2/ssl:ro
+      - $SSH_AUTH_SOCK:/ssh-agent # Forward local machine SSH auth socket file to container at /ssh-agent
+    environment:
+      - SSL_ENABLED
+      - SSH_AUTH_SOCK=/ssh-agent # tell the container its SSH auth socket file is at /ssh-agent
