@@ -5,10 +5,10 @@ A project to make it even easier to deploy a PHP Satis server.
 
 ## Usage
 
-1. Copy the .env.example file to .env and fill in the details.
-2. Copy the volumes/config/satis.json.example to volumes/config/satis.json and fill it in with
+1. Copy the *.env.example* file to *.env* and fill in the details.
+2. Copy the *volumes/config/satis.json.example* to *volumes/config/satis.json* and fill it in with
    details of your private repositories.
-3. Copy the volumes/config/credentials.txt.example to volumes/config/credentials.txt and fill in the
+3. Copy the *volumes/config/credentials.txt.example* to *volumes/config/credentials.txt* and fill in the
    credentials if your repositories require a username and password (SVN). If not, then just leave
    the contents as-is, but the file must exist.
 4. Run `docker-compose build` to build the image.
@@ -37,4 +37,13 @@ If you are wondering how this will be able to securely access your git repositor
 as your server has access, then the docker container will have access. To test this, just try
 running a git clone of your repository on your server. You may wish to just run `ssh-keygen`
 and add the *$HOME/.ssh/id_rsa.pub* public key to your repositories to grant access.
+
+If you get any errors during the build to do with the SSH auth socket etc, please make sure
+the SSH agent is running on your server. You may wish to simply add the following to your
+*.bashrc* file:
+
+```bash
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+```
 
