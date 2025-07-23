@@ -8,7 +8,7 @@ A project to allow you to easily spin up your own Satis server to act as your ow
 ## Getting Started
 
 There are two main ways that you can deploy this through docker. The quickest way to get going is
-to:
+to use the [pre-built image](https://hub.docker.com/r/programster/satis-server) with:
 
 1. Copy the docker-compose.yml file
 2. Copy the .env.example file and rename to .env and fill it in. Set the `DOCKER_IMAGE_NAME` to
