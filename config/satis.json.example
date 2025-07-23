@@ -1,0 +1,11 @@
+{
+    "name": "acme/satis-server",
+    "homepage": "http://www.mydomain.com",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "ssh://git@gitlab.mydomain.com:2222/userGroup/my-package-name.git"
+        }
+    ],
+    "require-all": true
+}

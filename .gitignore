@@ -1,4 +1,3 @@
 .env
-satis.json
-credentials.txt
+logs
 .idea

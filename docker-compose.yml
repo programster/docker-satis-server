@@ -1,0 +1,32 @@
+services:
+    app:
+        build:
+            context: src/
+            dockerfile: Dockerfile
+        container_name: ${CONTAINER_NAME:-satis}
+        image: ${DOCKER_IMAGE_NAME:-satis}
+        restart: always
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./config:/config:ro
+
+            # Uncomment below if you wish to provide your own SSL/TLS certificates.
+            - ./ssl:/etc/apache2/ssl
+
+            # Forward local machine SSH auth socket file to container at /ssh-agent
+            - $SSH_AUTH_SOCK:/ssh-agent
+
+            # uncomment the following if you wish to get the apache and supervisor logs
+            #- ./logs/apache2:/var/log/apache2/
+            #- ./logs/supervisor:/var/log/supervisor/
+        logging:
+            driver: json-file
+            options:
+                max-size: "10M"
+                max-file: "10"
+        environment:
+            - SSL_ENABLED
+            - REFRESH_SLEEP_PERIOD
+            - SSH_AUTH_SOCK=/ssh-agent # tell the container its SSH auth socket file is at /ssh-agent

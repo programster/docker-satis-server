@@ -2,7 +2,7 @@ proc handleOutput { spawn_id user password  } {
     expect {
         {*re you sure you want to continue connecting*} {
             send "yes\n"
-            handleOutput $spawn_id
+            handleOutput $spawn_id $user $password
         } {*Username:*} {
             send "$user\n"
             handleOutput $spawn_id $user $password
@@ -28,7 +28,7 @@ proc updateSatis { user password } {
 
     cd /root
     set SCRIPT_PATH [ file dirname [ file normalize [ info script ] ] ]
-    spawn /usr/bin/php "satis/bin/satis" build -- "/config/satis.json" "/var/www/html"
+    spawn /usr/bin/php "/root/satis/bin/satis" build -- "/config/satis.json" "/var/www/html"
     handleOutput $spawn_id $user $password
 }
 
